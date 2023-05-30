@@ -1,8 +1,7 @@
 const {Router} = require('express');
 const bookRouter = Router()
+const {getAllBooksHandler} = require('../handlers/booksHandlers')
 
-bookRouter.get('/',(req,res)=>{
-    res.send('estan funcionando las rutas')
-})
+bookRouter.get('/',getAllBooksHandler)
 
 module.exports = bookRouter
