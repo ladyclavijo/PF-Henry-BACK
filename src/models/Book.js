@@ -41,7 +41,7 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         
-        publication_date: {
+        publisher_date: {
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: DataTypes.NOW,
@@ -52,7 +52,7 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         
-        languageOfTheBook: {
+        language: {
             type: DataTypes.STRING,
             allowNull: false
         },
