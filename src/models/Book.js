@@ -41,9 +41,10 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         
-        genre: {
-            type: DataTypes.STRING,
-            allowNull: false
+        publication_date: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
         },
         
         pages: {
