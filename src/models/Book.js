@@ -2,26 +2,22 @@ const { DataTypes } = require('sequelize')
 
 module.exports = (sequelize) => {
     sequelize.define('book', {
-
         id: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
+            type: DataTypes.INTEGER,
             primaryKey: true,
-            allowNull: false
-        },
-        
+            autoIncrement: true
+          },
         title: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+            unique: false
         },
-   
         description: {
             type: DataTypes.TEXT,
-            allowNull: false
+            allowNull: false,
         },
 
-        photo: {
+        cover: {
             type: DataTypes.TEXT,
             allowNull: false
         },
@@ -44,7 +40,7 @@ module.exports = (sequelize) => {
         
         pages: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
         },
         
         language: {
