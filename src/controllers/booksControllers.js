@@ -2,7 +2,7 @@ require("dotenv").config();
 const { book } = require("../db");
 
 const getAllBooks = async () => {
-  const response = await book.findAll()
+  const response = await book.findAll();
   return response;
 };
 
