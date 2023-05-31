@@ -6,12 +6,12 @@ const authors = require("./models/Author.js");
 const genres = require("./models/Genre.js");
 const users = require("./models/User.js");
 
-// const database = new Sequelize(
-//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/bookbuster`,
-//   {
-//     logging: false,
-//     native: false,
-//   }
+//const database = new Sequelize(
+//  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/bookbuster`,
+// {
+// logging: false,
+// native: false,
+// }
 // );
 const database = new Sequelize(DB_DEPLOY, {
   logging: false,
