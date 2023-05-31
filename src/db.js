@@ -1,10 +1,10 @@
 require("dotenv").config();
 const { URI } = process.env;
 const { Sequelize } = require("sequelize");
-const books = requiere("./models/Book.js");
-const authors = requiere("./models/Author.js");
-const genres = requiere("./models/Genre.js");
-const users = requiere("./models/User.js");
+const books = require("./models/Book.js");
+const authors = require("./models/Author.js");
+const genres = require("./models/Genre.js");
+const users = require("./models/User.js");
 
 const database = new Sequelize(URI);
 
