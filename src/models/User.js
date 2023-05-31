@@ -11,19 +11,19 @@ module.exports = (sequelize) => {
       },
 
       name: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
         unique: true,
       },
 
       email: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
         unique: true,
       },
 
       password: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
       },
 
@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
       },
 
       paymentMethod: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
       },
 
