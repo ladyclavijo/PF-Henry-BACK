@@ -1,7 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
 const he = require("he");
-const { Book } = require("../db");
+const { book } = require("../db");
 
 const getAllBooks = async () => {
   const response1 = await axios.get(
@@ -96,7 +96,7 @@ const getAllBooks = async () => {
 
 const getBookById = async (req, res) => {
   const bookId = req.params.id;
-  const findBook = await Book.findByPk(bookId, {
+  const findBook = await book.findByPk(bookId, {
     include: [
       {
         model: Author,
