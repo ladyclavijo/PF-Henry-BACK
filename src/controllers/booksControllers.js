@@ -6,9 +6,8 @@ const getAllBooks = async () => {
   return response;
 };
 
-const getBookById = async (req, res) => {
-  const bookId = req.params.id;
-  const findBook = await book.findByPk(bookId, {
+const getBookById = async (id) => {
+  const findBook = await book.findByPk(id, {
     include: [
       {
         model: Author,

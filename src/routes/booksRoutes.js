@@ -6,6 +6,6 @@ const {
 } = require("../handlers/booksHandlers");
 
 bookRouter.get("/", getAllBooksHandler);
-bookRouter.get("/book_detail/:id", getBookByIdHandler);
+bookRouter.get("/:id", getBookByIdHandler);
 
 module.exports = bookRouter;
