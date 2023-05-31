@@ -3,7 +3,7 @@ const { conn } = require("./src/db");
 const port = process.env.PORT || 3001;
 const {inyectDbWithBooks} = require('./src/utils/utils')
 
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   app.listen(port, () => {
     inyectDbWithBooks()
     console.log(`Server raised in port ${port}`); // eslint-disable-line no-console
