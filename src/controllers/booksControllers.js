@@ -1,7 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
-const he = require('he');
-
+const he = require("he");
+const { Book } = require("../db");
 
 const getAllBooks = async () => {
   const response1 = await axios.get(
@@ -59,7 +59,21 @@ const getAllBooks = async () => {
   const apiRaw12 = response12.data;
   const apiRaw13 = response13.data;
 
-  const apiRaw = [...apiRaw4,...apiRaw12,...apiRaw11,...apiRaw10,...apiRaw9,...apiRaw8,...apiRaw7,...apiRaw6,...apiRaw5,...apiRaw13,...apiRaw3,...apiRaw2, ...apiRaw1];
+  const apiRaw = [
+    ...apiRaw4,
+    ...apiRaw12,
+    ...apiRaw11,
+    ...apiRaw10,
+    ...apiRaw9,
+    ...apiRaw8,
+    ...apiRaw7,
+    ...apiRaw6,
+    ...apiRaw5,
+    ...apiRaw13,
+    ...apiRaw3,
+    ...apiRaw2,
+    ...apiRaw1,
+  ];
   let api = apiRaw.map((elem) => {
     return {
       id: elem.ID,
@@ -80,6 +94,28 @@ const getAllBooks = async () => {
   return api;
 };
 
+const getBookById = async (req, res) => {
+  const bookId = req.params.id;
+  const findBook = await Book.findByPk(bookId, {
+    include: [
+      {
+        model: Author,
+        attributes: ["name"],
+        through: {
+          attributes: [],
+        },
+        model: Genre,
+        attributes: ["name"],
+        through: {
+          attributes: [],
+        },
+      },
+    ],
+  });
+  return findBook;
+};
+
 module.exports = {
   getAllBooks,
+  getBookById,
 };
