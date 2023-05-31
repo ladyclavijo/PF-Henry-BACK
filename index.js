@@ -1,5 +1,8 @@
-const app = require('./src/app')
+const app = require("./src/app");
+const { conn } = require("./src/db");
 
-app.listen(3001,()=>{
-    console.log('The back is active')
-})
+conn.sync({ force: false }).then(() => {
+  app.listen(3001, () => {
+    console.log("%s listening at 3001"); // eslint-disable-line no-console
+  });
+});
