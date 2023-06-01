@@ -1,7 +1,8 @@
 const {Router} = require('express')
 const genresRouter = Router()
-const {getAllGenresHandler} = require('../handlers/genresHandlers')
+const {getAllGenresDB, getGenreById} = require('../controllers/genresControllers')
 
-genresRouter.get('/',getAllGenresHandler)
+genresRouter.get('/genres', getAllGenresDB )
+genresRouter.get('/genres/:id', getGenreById)
 
 module.exports = genresRouter
