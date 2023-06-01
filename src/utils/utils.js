@@ -1,4 +1,4 @@
-const { book } = require("../db");
+const { book, genre } = require("../db");
 const axios = require("axios");
 const he = require("he");
 
@@ -75,6 +75,7 @@ const inyectDbWithBooks = async () => {
       ...apiRaw2,
       ...apiRaw1,
     ];
+    let genresToFilter = await genre.findAll();
     let api = apiRaw.map((elem) => {
       return {
         title: elem.title,
@@ -88,10 +89,11 @@ const inyectDbWithBooks = async () => {
         language: elem.language,
         stock: true,
         created: false,
+        genre: elem.categories,
       };
     });
-    api.forEach((elem) => {
-      book.create({
+    api.forEach(async (elem) => {
+      let newBook = await book.create({
         title: elem.title,
         author: elem.author,
         cover: elem.cover,
@@ -104,10 +106,56 @@ const inyectDbWithBooks = async () => {
         stock: true,
         created: false,
       });
+      let filteredCategory = elem.genre
+        .filter((obj1) =>
+          genresToFilter.some((obj2) => obj2.id === obj1.category_id)
+        )
+        .map((obj) => obj.category_id);
+        await newBook.addGenre(filteredCategory);
+    });
+  }
+};
+
+const getAllGenres = async () => {
+  const apiHasBeenInyected = await genre.findAll();
+  if (apiHasBeenInyected.length === 0) {
+    const API =
+      "https://www.etnassoft.com/api/v1/get/?get_categories=all&json=true";
+    const apiRaw = await axios.get(API);
+    const found = apiRaw.data.filter((elem) => {
+      return (
+        elem.nicename === "cine" ||
+        elem.nicename === "libros_programacion" ||
+        elem.nicename === "filosofia" ||
+        elem.nicename === "ensayos_y_novelas" ||
+        elem.nicename === "historia" ||
+        elem.nicename === "ciencia" ||
+        elem.nicename === "desarrollo_web" ||
+        elem.nicename === "bases_de_datos" ||
+        elem.nicename === "musica" ||
+        elem.nicename === "comics" ||
+        elem.nicename === "educacion" ||
+        elem.nicename === "marketing_y_business" ||
+        elem.nicename === "robotica"
+      );
+    });
+
+    const genresMap = found.map((e) => {
+      return {
+        id: e.category_id,
+        name: e.name,
+      };
+    });
+    genresMap.forEach((elem) => {
+      genre.create({
+        id: elem.id,
+        name: elem.name,
+      });
     });
   }
 };
 
 module.exports = {
   inyectDbWithBooks,
+  getAllGenres,
 };
