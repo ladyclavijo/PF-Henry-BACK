@@ -1,6 +1,15 @@
 const { book } = require("../db");
 const axios = require("axios");
 const he = require("he");
+const cloudinary = require("cloudinary").v2;
+const { CLOUD_NAME, API_KEY, API_SECRET } = process.env;
+
+cloudinary.config({
+  cloud_name: CLOUD_NAME,
+  api_key: API_KEY,
+  api_secret: API_SECRET,
+  secure: true,
+});
 
 const inyectDbWithBooks = async () => {
   const apiHasBeenInyected = await book.findAll();
@@ -90,11 +99,20 @@ const inyectDbWithBooks = async () => {
         created: false,
       };
     });
-    api.forEach((elem) => {
+    api.forEach(async (elem) => {
+      const cover = await new Promise((resolve, reject) => {
+        cloudinary.uploader.upload(elem.cover, (error, result) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(result.secure_url);
+          }
+        });
+      });
       book.create({
         title: elem.title,
         author: elem.author,
-        cover: elem.cover,
+        cover: cover,
         description: elem.description,
         price: elem.price,
         publisher: elem.publisher,
