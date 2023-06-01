@@ -1,30 +1,10 @@
-const axios = require('axios')
+
 const { genre } = require('../db');
-
-const getAllGenres = async (req, res) => {
-
-    const API = "https://www.etnassoft.com/api/v1/get/?get_categories=all&json=true"
-    const apiRaw = await axios.get(API);
-    const found = apiRaw.data.filter((elem) => { 
-      return elem.nicename === 'cine' || elem.nicename === 'libros_programacion' || elem.nicename === 'filosofia' || elem.nicename === 'ensayos_y_novelas' || elem.nicename === 'historia' || elem.nicename === 'ciencia' || elem.nicename === 'desarrollo_web' ||  elem.nicename === 'bases_de_datos' || elem.nicename === 'musica' || elem.nicename === 'comics' || elem.nicename === 'educacion' || elem.nicename === 'marketing_y_business' || elem.nicename === 'robotica'
-    })
-    
-    const genresMap =  found.map((e) => e.name)
-
-    for (const name of genresMap) {
-      await genre.findOrCreate({ where: { name } });
-    }
-      
-    const genresDb = await genre.findAll()
-    return genresDb;
-    
-};
-
 
 const getAllGenresDB= async (req, res) => {
   try {
     const { name } = req.query;
-    let allGenres = await getAllGenres();
+    let allGenres = await genre.findAll();
 
     if (name) {
       let genreName = allGenres.filter((genre) =>
