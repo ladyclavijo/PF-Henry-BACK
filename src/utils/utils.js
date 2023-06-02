@@ -176,5 +176,5 @@ const inyectDbWithBooks = async () => {
 
 module.exports = {
   inyectDbWithBooks,
-  getAllGenres,
+  // getAllGenres,
 };
