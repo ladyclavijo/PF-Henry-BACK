@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { book, genre } = require("../db");
+const { book, genre, author } = require("../db");
 const { Op } = require("sequelize");
 
 const getAllBooks = async () => {
@@ -10,6 +10,13 @@ const getAllBooks = async () => {
 const getBookById = async (id) => {
   const findBook = await book.findByPk(id, {
     include: [
+      {
+        model: author,
+        attributes: ["name"],
+        // through: {
+        //   attributes: [],
+        // },
+      },
       {
         model: genre,
         attributes: ["name"],

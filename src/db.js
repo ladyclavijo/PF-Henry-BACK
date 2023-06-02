@@ -11,13 +11,13 @@ const users = require("./models/User.js");
 //   {
 //     logging: false,
 //     native: false,
+//     force: true,
 //   }
 // );
-
-
 const database = new Sequelize(DB_DEPLOY, {
   logging: false,
   native: false,
+  force: true,
 });
 
 books(database);
@@ -28,10 +28,16 @@ users(database);
 const { book, author, genre, user } = database.models;
 
 user.hasMany(book);
+book.belongsTo(user);
+
 book.hasOne(user);
+user.belongsTo(book);
 
 author.hasMany(book);
-book.hasOne(author);
+book.belongsTo(author);
+
+// book.hasOne(author);
+// author.belongsTo(book);
 
 book.belongsToMany(genre, { through: "BookGenre", timestamps: false });
 genre.belongsToMany(book, { through: "BookGenre", timestamps: false });
