@@ -1,18 +1,53 @@
-const axios = require("axios");
+const { author, book } = require("../db");
+const Sequelize = require("sequelize");
+const op = Sequelize.Op;
 
-const getAllAuthors = async () => {
-  const urlAuthors = await axios.get(
-    "https://www.etnassoft.com/api/v1/get/?book_author"
-  );
-  const apiData = urlAuthors.data.map((e) => {
-    return {
-      id: e.id,
-      name: e.author,
-      createdDB: false,
-    };
-  });
-
-  return apiData;
+const getAllAuthors = async() => {
+  const response = await author.findAll()
+  return response;
 };
 
-module.exports = { getAllAuthors };
+const getAuthorsById = async(id) => {
+  try {
+    const findAuthor = await author.findByPk(id, {
+      include: [
+        {
+          model: book,
+          attributes: ["name"],
+          through: {
+            attributes: []
+          }
+        }
+      ]
+    })
+    return findAuthor;
+     
+  } catch (error) {
+    return error    
+  }
+};
+
+const getAuthorsByName = async(name) => {
+  try {
+    const dbAuthors = await author.findOne({
+      where: { name: { [op.iLike]:`%${name}%`}},
+      include: [{
+        model: book,
+        attributes: ["name"],
+        through: {
+          attributes: []
+        }
+      }]
+    });
+    return dbAuthors;
+  } catch (error) {
+    return error    
+  }
+};
+
+
+module.exports = {
+  getAllAuthors,
+  getAuthorsById,
+  getAuthorsByName
+};
