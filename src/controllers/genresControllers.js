@@ -1,5 +1,5 @@
-
 const { genre } = require('../db');
+const { Op } = require('sequelize');
 
 const getAllGenresDB= async (req, res) => {
   try {
@@ -7,9 +7,13 @@ const getAllGenresDB= async (req, res) => {
     let allGenres = await genre.findAll();
 
     if (name) {
-      let genreName = allGenres.filter((genre) =>
-        genre.name.toLowerCase().includes(name.toLowerCase())
-      );
+      let genreName =  await genre.findAll({
+        where: {
+          name: {
+            [Op.iLike]: `%${name}%`
+          }
+        }
+    });
       genreName.length
         ? res.status(200).json(genreName)
         : res.status(404).send("The genre was not found in the database");
