@@ -129,7 +129,7 @@ const inyectDbWithBooks = async () => {
           genresToFilter.some((obj2) => obj2.id === obj1.category_id)
         )
         .map((obj) => obj.category_id);
-        await newBook.addGenre(filteredCategory);
+      await newBook.addGenre(filteredCategory);
     });
   }
 };
