@@ -13,6 +13,8 @@ const users = require("./models/User.js");
 //     native: false,
 //   }
 // );
+
+
 const database = new Sequelize(DB_DEPLOY, {
   logging: false,
   native: false,
