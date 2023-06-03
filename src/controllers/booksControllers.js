@@ -1,6 +1,15 @@
 require("dotenv").config();
 const { book } = require("../db");
 const { Op } = require("sequelize");
+const cloudinary = require("cloudinary").v2;
+const { CLOUD_NAME, API_KEY, API_SECRET } = process.env;
+
+cloudinary.config({
+  cloud_name: CLOUD_NAME,
+  api_key: API_KEY,
+  api_secret: API_SECRET,
+  secure: true,
+});
 
 const getAllBooks = async () => {
   const response = await book.findAll();
@@ -35,7 +44,8 @@ const createBook = async (
   publisher_date,
   pages,
   language,
-  genres
+  author,
+  genre
 ) => {
   if (
     !title ||
@@ -45,21 +55,33 @@ const createBook = async (
     !publisher ||
     !publisher_date ||
     !pages ||
-    !language
+    !language ||
+    !author ||
+    !genre
   ) {
     throw Error("missing data");
   } else {
+    const newCover = await new Promise((resolve, reject) => {
+      cloudinary.uploader.upload(cover, (error, result) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result.secure_url);
+        }
+      });
+    });
     const newBook = await book.create({
       title,
       description,
-      cover,
+      cover: newCover,
       price,
       publisher,
       publisher_date,
       pages,
       language,
+      author,
+      genre,
     });
-    await newBook.addGenre(genres);
     return `new book created with the id:${newBook?.id}`;
   }
 };

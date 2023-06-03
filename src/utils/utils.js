@@ -53,7 +53,6 @@ const inyectDbWithBooks = async () => {
         stock: true,
         created: false,
       });
-      console.log(newBook.title);
       const authorsDB = newBook.author;
       if (authorsDB.length > 1) {
         for (const e of authorsDB) {
