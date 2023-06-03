@@ -7,8 +7,8 @@
     "publisher_date": "2019-09-05",
     "pages": 352,
     "language": "es",
-    "author": "Lucy Foley",
-    "genre": ["Ficción", "Bolivia"]
+    "author": ["Lucy Foley"],
+    "genre": ["Ficción"]
   },
   {
     "title": "La lista de invitados",
@@ -18,8 +18,8 @@
     "publisher_date": "2021-06-09",
     "pages": 336,
     "language": "es",
-    "author": "Lucy Foley",
-    "genre": "Ficción"
+    "author": ["Lucy Foley"],
+    "genre": ["Ficción"]
   },
   {
     "title": "El Palacio de Papel",
@@ -29,7 +29,7 @@
     "publisher_date": "2021-09-16",
     "pages": 451,
     "language": "es",
-    "author": "Miranda Cowley Heller",
+    "author": ["Miranda Cowley Heller"],
     "genre": ["Ficción"]
   },
   {
@@ -40,7 +40,7 @@
     "publisher_date": "2017-01-24",
     "pages": 432,
     "language": "es",
-    "author": "Margot Lee Shetterly",
+    "author": ["Margot Lee Shetterly"],
     "genre": ["Historia"]
   },
   {
@@ -51,7 +51,7 @@
     "publisher_date": "2014-09-04",
     "pages": 496,
     "language": "es",
-    "author": "Yuval Noah Harari",
+    "author": ["Yuval Noah Harari"],
     "genre": ["Ciencia"]
   },
   {
@@ -62,7 +62,7 @@
     "publisher_date": "2014-09-09",
     "pages": 320,
     "language": "es",
-    "author": "Tom Rath",
+    "author": ["Tom Rath"],
     "genre": ["Economía"]
   },
   {
@@ -73,7 +73,7 @@
     "publisher_date": "2021-09-16",
     "pages": 672,
     "language": "es",
-    "author": "Patrick Radden Keefe",
+    "author": ["Patrick Radden Keefe"],
     "genre": ["Criminología"]
   },
   {
@@ -84,7 +84,7 @@
     "publisher_date": "2018-11-13",
     "pages": 526,
     "language": "es",
-    "author": "Michelle Obama",
+    "author": ["Michelle Obama"],
     "genre": ["Biografía"]
   },
   {
@@ -95,7 +95,7 @@
     "publisher_date": "2000",
     "pages": 272,
     "language": "es",
-    "author": "Gary King",
+    "author": ["Gary King"],
     "genre": ["Matemática"]
   },
   {
@@ -106,7 +106,7 @@
     "publisher_date": "2012-07-10",
     "pages": 115,
     "language": "en",
-    "author": "Clarissa Cassales Marquezan",
+    "author": ["Clarissa Cassales Marquezan"],
     "genre": ["Computación"]
   }
 ]

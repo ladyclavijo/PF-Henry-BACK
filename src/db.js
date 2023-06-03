@@ -6,19 +6,19 @@ const authors = require("./models/Author.js");
 const genres = require("./models/Genre.js");
 const users = require("./models/User.js");
 
-// const database = new Sequelize(
-//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/bookbuster`,
-//   {
-//     logging: false,
-//     native: false,
-//     force: true,
-//   }
-// );
-const database = new Sequelize(DB_DEPLOY, {
-  logging: false,
-  native: false,
-  force: true,
-});
+const database = new Sequelize(
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/bookbuster`,
+  {
+    logging: false,
+    native: false,
+    force: true,
+  }
+);
+// const database = new Sequelize(DB_DEPLOY, {
+//   logging: false,
+//   native: false,
+//   force: true,
+// });
 
 books(database);
 authors(database);
@@ -32,15 +32,6 @@ book.belongsTo(user);
 
 book.hasOne(user);
 user.belongsTo(book);
-
-author.hasMany(book);
-book.belongsTo(author);
-
-// book.hasOne(author);
-// author.belongsTo(book);
-
-book.belongsToMany(genre, { through: "BookGenre", timestamps: false });
-genre.belongsToMany(book, { through: "BookGenre", timestamps: false });
 
 module.exports = {
   ...database.models,
