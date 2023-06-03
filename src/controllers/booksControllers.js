@@ -13,9 +13,6 @@ const getBookById = async (id) => {
       {
         model: author,
         attributes: ["name"],
-        // through: {
-        //   attributes: [],
-        // },
       },
       {
         model: genre,
@@ -43,8 +40,28 @@ const getBooksByTitle = async (title) => {
   return books;
 };
 
+const createBook = async (
+  title,
+  description,
+  cover,
+  price,
+  publisher,
+  publisher_date,
+  pages,
+  language,
+  genres
+) => {
+  if(!title || !description || !cover || !price || !publisher || !publisher_date || !pages || !language){throw Error('missing data')}
+  else{
+    const newBook = await book.create({title, description, cover, price, publisher, publisher_date, pages, language})
+    await newBook.addGenre(genres)
+    return `new book created with the id:${newBook?.id}`
+  }
+};
+
 module.exports = {
   getAllBooks,
   getBookById,
   getBooksByTitle,
+  createBook
 };
