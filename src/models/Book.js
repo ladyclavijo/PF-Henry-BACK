@@ -33,9 +33,8 @@ module.exports = (sequelize) => {
         },
         
         publisher_date: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             allowNull: false,
-            defaultValue: DataTypes.NOW,
         },
         
         pages: {
@@ -50,12 +49,12 @@ module.exports = (sequelize) => {
 
         stock: {
             type: DataTypes.BOOLEAN,
-            defaultValue: false
+            defaultValue: true
         },
 
         created: {
             type: DataTypes.BOOLEAN,
-            defaultValue: false
+            defaultValue: true
         }
     },
     {
