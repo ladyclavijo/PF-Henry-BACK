@@ -25,7 +25,22 @@ const getAllGenresDB= async (name) => {
   }
 }
 
+// const getGenreById = async (id) => {
+//   try {
+//       const genresDb = await genre.findByPk(id);
+
+//       if (!genresDb) {
+//           return res
+//               .status(404)
+//               .json({ message: 'The genre was not found in the database' });
+//       }
+//       return res.status(200).json(genresDb);
+//   } catch (error) {
+//       res.status(500).json({ message: error.message });
+//   }
+// };
 
 module.exports = {
   getAllGenresDB,
+  // getGenreById,
 };
