@@ -62,7 +62,7 @@ const createBook = async (
     throw Error("missing data");
   } else {
     const newCover = await new Promise((resolve, reject) => {
-      cloudinary.uploader.upload(cover, (error, result) => {
+      cloudinary.uploader.upload(cover, { folder: "PF-BookBuster" }, (error, result) => {
         if (error) {
           reject(error);
         } else {
