@@ -50,7 +50,7 @@ const inyectDbWithBooks = async () => {
     });
     api.forEach(async (elem) => {
       const cover = await new Promise((resolve, reject) => {
-        cloudinary.uploader.upload(elem.cover, (error, result) => {
+        cloudinary.uploader.upload(elem.cover, { folder: "PF-BookBuster" }, (error, result) => {
           if (error) {
             reject(error);
           } else {
