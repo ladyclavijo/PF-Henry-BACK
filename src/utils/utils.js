@@ -2,6 +2,7 @@ const { book, genre, author } = require("../db");
 const cloudinary = require("cloudinary").v2;
 const { CLOUD_NAME, API_KEY, API_SECRET } = process.env;
 const books = require("../../books.json");
+const genres = require("../../genres.json");
 
 cloudinary.config({
   cloud_name: CLOUD_NAME,
@@ -9,6 +10,24 @@ cloudinary.config({
   api_secret: API_SECRET,
   secure: true,
 });
+
+const inyectDbWithGenres = async () => {
+  const apiHasBeenInyected = await genre.findAll();
+  if (apiHasBeenInyected.length === 0) {
+    let api = genres.map((elem) => {
+      return {
+        id: elem.id,
+        name: elem.name,
+      };
+    });
+    api.forEach(async (elem) => {
+      await genre.create({
+        id: elem.id,
+        name: elem.name,
+      });
+    });
+  }
+};
 
 const inyectDbWithBooks = async () => {
   const apiHasBeenInyected = await book.findAll();
@@ -19,7 +38,7 @@ const inyectDbWithBooks = async () => {
         description: elem.description,
         cover: elem.cover,
         author: elem.author,
-        genre: elem.genre,
+        genres: elem.genre,
         price: elem.pages ? parseInt(elem.pages) * 30.5 : 0,
         publisher: elem.publisher,
         publisher_date: elem.publisher_date,
@@ -53,43 +72,12 @@ const inyectDbWithBooks = async () => {
         stock: true,
         created: false,
       });
-      const authorsDB = newBook.author;
-      if (authorsDB.length > 1) {
-        for (const e of authorsDB) {
-          await author.findOrCreate({
-            where: {
-              name: e,
-            },
-          });
-        }
-      } else {
-        await author.findOrCreate({
-          where: {
-            name: authorsDB[0],
-          },
-        });
-      }
-
-      const genresDB = newBook.genre;
-      if (genresDB.length > 1) {
-        for (const e of genresDB) {
-          await genre.findOrCreate({
-            where: {
-              name: e,
-            },
-          });
-        }
-      } else {
-        await genre.findOrCreate({
-          where: {
-            name: genresDB[0],
-          },
-        });
-      }
+      await newBook.addGenre(elem.genres);
     });
   }
 };
 
 module.exports = {
   inyectDbWithBooks,
+  inyectDbWithGenres,
 };

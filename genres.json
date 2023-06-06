@@ -1,0 +1,42 @@
+[
+    {
+      "id": 1,
+      "name": "Ficción"
+    },
+    {
+      "id": 2,
+      "name": "Computación"
+    },
+    {
+      "id": 3,
+      "name": "Economía"
+    },
+    {
+      "id": 4,
+      "name": "Ciencia"
+    },
+    {
+      "id": 5,
+      "name": "Historia"
+    },
+    {
+      "id": 6,
+      "name": "Matemática"
+    },
+    {
+      "id": 7,
+      "name": "Biografía"
+    },
+    {
+      "id": 8,
+      "name": "Criminología"
+    },
+    {
+      "id": 9,
+      "name": "Fantasía"
+    },
+    {
+      "id": 10,
+      "name": "Literatura"
+    }
+  ]

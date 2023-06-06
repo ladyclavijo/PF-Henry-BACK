@@ -17,7 +17,7 @@ const users = require("./models/User.js");
 const database = new Sequelize(DB_DEPLOY, {
   logging: false,
   native: false,
-  force: false,
+  force: true,
 });
 
 books(database);
@@ -29,6 +29,9 @@ const { book, author, genre, user } = database.models;
 
 user.hasMany(book);
 book.belongsTo(user);
+
+book.belongsToMany(genre, { through: "BookGenre", timestamps: false });
+genre.belongsToMany(book, { through: "BookGenre", timestamps: false });
 
 book.hasOne(user);
 user.belongsTo(book);

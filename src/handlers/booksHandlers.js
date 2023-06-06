@@ -39,8 +39,8 @@ const postBookHandler = async (req, res) => {
     publisher_date,
     pages,
     language,
-    author,
     genre,
+    author,
   } = req.body;
   try {
     const response = await createBook(
@@ -52,8 +52,8 @@ const postBookHandler = async (req, res) => {
       publisher_date,
       pages,
       language,
+      genre,
       author,
-      genre
     );
     res.status(200).json(response);
   } catch (error) {

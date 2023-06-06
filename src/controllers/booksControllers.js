@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { book } = require("../db");
+const { book, genre} = require("../db");
 const { Op } = require("sequelize");
 const cloudinary = require("cloudinary").v2;
 const { CLOUD_NAME, API_KEY, API_SECRET } = process.env;
@@ -12,12 +12,24 @@ cloudinary.config({
 });
 
 const getAllBooks = async () => {
-  const response = await book.findAll();
+  const response = await book.findAll({include:{
+    model: genre,
+    attributes:["name"],
+    through:{
+        attributes:[]
+    },
+}});
   return response;
 };
 
 const getBookById = async (id) => {
-  const findBook = await book.findByPk(id);
+  const findBook = await book.findByPk(id,{include:{
+    model: genre,
+    attributes:["name"],
+    through:{
+        attributes:[]
+    },
+}});
   return findBook;
 };
 
@@ -44,8 +56,8 @@ const createBook = async (
   publisher_date,
   pages,
   language,
-  author,
-  genre
+  genre,
+  author
 ) => {
   if (
     !title ||
@@ -80,8 +92,8 @@ const createBook = async (
       pages,
       language,
       author,
-      genre,
     });
+    await newBook.addGenre(genre);
     return `new book created with the id:${newBook?.id}`;
   }
 };
