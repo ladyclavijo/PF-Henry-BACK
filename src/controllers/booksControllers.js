@@ -1,14 +1,26 @@
 require("dotenv").config();
-const { book } = require("../db");
+const { book, genre} = require("../db");
 const { Op } = require("sequelize");
 
 const getAllBooks = async () => {
-  const response = await book.findAll();
+  const response = await book.findAll({include:{
+    model: genre,
+    attributes:["name"],
+    through:{
+        attributes:[]
+    },
+}});
   return response;
 };
 
 const getBookById = async (id) => {
-  const findBook = await book.findByPk(id);
+  const findBook = await book.findByPk(id,{include:{
+    model: genre,
+    attributes:["name"],
+    through:{
+        attributes:[]
+    },
+}});
   return findBook;
 };
 
@@ -35,7 +47,8 @@ const createBook = async (
   publisher_date,
   pages,
   language,
-  genres
+  genre,
+  author
 ) => {
   if (
     !title ||
@@ -45,7 +58,7 @@ const createBook = async (
     !publisher ||
     !publisher_date ||
     !pages ||
-    !language
+    !language||!author
   ) {
     throw Error("missing data");
   } else {
@@ -58,8 +71,9 @@ const createBook = async (
       publisher_date,
       pages,
       language,
+      author,
     });
-    await newBook.addGenre(genres);
+    await newBook.addGenre(genre);
     return `new book created with the id:${newBook?.id}`;
   }
 };

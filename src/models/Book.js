@@ -27,25 +27,18 @@ module.exports = (sequelize) => {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
       },
-      genre: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false,
-      },
       price: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
       },
-
       publisher: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-
       publisher_date: {
         type: DataTypes.DATEONLY,
         allowNull: false,
       },
-
       pages: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -54,12 +47,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-
       stock: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       },
-
       created: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,

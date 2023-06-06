@@ -8,7 +8,7 @@
     "pages": 352,
     "language": "es",
     "author": ["Lucy Foley"],
-    "genre": ["Ficción"]
+    "genre": [1]
   },
   {
     "title": "La lista de invitados",
@@ -19,7 +19,7 @@
     "pages": 336,
     "language": "es",
     "author": ["Lucy Foley"],
-    "genre": ["Ficción"]
+    "genre": [1]
   },
   {
     "title": "El Palacio de Papel",
@@ -30,7 +30,7 @@
     "pages": 451,
     "language": "es",
     "author": ["Miranda Cowley Heller"],
-    "genre": ["Ficción"]
+    "genre": [1]
   },
   {
     "title": "Talentos ocultos",
@@ -41,7 +41,7 @@
     "pages": 432,
     "language": "es",
     "author": ["Margot Lee Shetterly"],
-    "genre": ["Historia"]
+    "genre": [5]
   },
   {
     "title": "Sapiens. De animales a dioses",
@@ -52,7 +52,7 @@
     "pages": 496,
     "language": "es",
     "author": ["Yuval Noah Harari"],
-    "genre": ["Ciencia"]
+    "genre": [4]
   },
   {
     "title": "Conozca sus fortalezas 2.0.",
@@ -63,7 +63,7 @@
     "pages": 320,
     "language": "es",
     "author": ["Tom Rath"],
-    "genre": ["Economía"]
+    "genre": [3]
   },
   {
     "title": "El imperio del dolor",
@@ -74,7 +74,7 @@
     "pages": 672,
     "language": "es",
     "author": ["Patrick Radden Keefe"],
-    "genre": ["Criminología"]
+    "genre": [8]
   },
   {
     "title": "Mi historia",
@@ -85,7 +85,7 @@
     "pages": 526,
     "language": "es",
     "author": ["Michelle Obama"],
-    "genre": ["Biografía"]
+    "genre": [7]
   },
   {
     "title": "El diseño de la investigación social",
@@ -96,7 +96,7 @@
     "pages": 272,
     "language": "es",
     "author": ["Gary King"],
-    "genre": ["Matemática"]
+    "genre": [6]
   },
   {
     "title": "Self-* and P2P for Network Management",
@@ -107,6 +107,61 @@
     "pages": 115,
     "language": "en",
     "author": ["Clarissa Cassales Marquezan"],
-    "genre": ["Computación"]
+    "genre": [2]
+  },
+  {
+    "title": "La oruga muy hambrienta",
+    "description": "Carle's classic tale of a voracious caterpillar who eats his way through the days of the week and then changes into a beautiful butterfly has been issued in a board book edition with wonderfully thick, durable pages. Full-color illustrations.",
+    "cover": "https://res.cloudinary.com/dmgwt0zhx/image/upload/v1685839129/PF-BookBuster/uja5djtblatvu7kbnoud.jpg",
+    "publisher": "Philomel",
+    "publisher_date": "2002-08-25",
+    "pages": 245,
+    "language": "en",
+    "author": ["Eric Carle"],
+    "genre": [1]
+  },
+  {
+    "title": "El Principito",
+    "description": "El Principito es un clásico de la literatura universal que nos transporta a un mundo mágico y lleno de enseñanzas. Acompaña al pequeño príncipe en su viaje interplanetario y descubre las lecciones de amor, amistad y sabiduría que nos regala en cada página.",
+    "cover": "https://res.cloudinary.com/dmgwt0zhx/image/upload/v1685911369/PF-BookBuster/vcf4juspe8u8zlqmakm4.webp",
+    "publisher": "Editorial ABC",
+    "publisher_date": "1943-04-06",
+    "pages": 120,
+    "language": "es",
+    "author": ["Antoine"],
+    "genre": [1,10]
+  },
+  {
+    "title": "Larga vida a la reina de Halloween",
+    "description": "Sally Esqueleton es la nueva y oficial reina de Halloween después de una larga relación con su verdadero amor, Jack. Sally lo adora con cada fibra de sus costuras, pero no puede decir lo mismo de su nuevo puesto como la reina de Halloween. Al ser el centro de atención y tener que lidiar con nuevas responsabilidades, Sally no puede evitar preguntarse si cambió su jaula con el doctor Finkelstein por una un poco más elegante. Mientras tanto, cuando Sally y Zero descubren por accidente un reino antiguo llamado Aldea del Sueño, se desata una serie de eventos siniestros que pondrán en peligro su futuro como reina y el del mismo Halloween. ¿Podrá Sally descubrir lo que significa ser fiel a sí misma y salvar a la aldea que considera su hogar o su futuro se pondrá… más extraño?",
+    "cover": "https://res.cloudinary.com/dmgwt0zhx/image/upload/v1685930112/PF-BookBuster/sxhktjsj3cmynafrii4f.jpg",
+    "publisher": "Grupo planeta",
+    "publisher_date": "2023-02-20",
+    "pages": 320,
+    "language": "es",
+    "author": ["Shea Ernshaw"],
+    "genre": [1,9]
+  },
+  {
+    "title": "El Pozo de la Ascension",
+    "description": "Durante mil años han caído las cenizas y nada florece. Durante mil años los skaa han sido esclavizados y viven sumidos en un miedo inevitable. Durante mil años el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes y a su inmortalidad. Pero vencer y matar al Lord Legislador fue la parte sencilla. El verdadero desafío será sobrevivir a las consecuencias de su caída. Tomar el poder tal vez resultó fácil, pero ¿qué ocurre después?, ¿cómo se utiliza? En ese mundo de aventura épica, la estrategia política y religiosa debe lidiar con los siempre misteriosos poderes de la alomancia...",
+    "cover": "https://res.cloudinary.com/dmgwt0zhx/image/upload/v1685994729/PF-BookBuster/sivzm5zy8ukgpwszlmpo.jpg",
+    "publisher": "Nova",
+    "publisher_date": "2019-12-10",
+    "pages": 784,
+    "language": "es",
+    "author": ["Brandon Sanderson"],
+    "genre": [1]
+  },
+  {
+    "title": "El Imperio Final",
+    "description": "Durante mil años han caído las cenizas y nada florece. Durante mil años los skaa han sido esclavizados y viven sumidos en un miedo inevitable. Durante mil años el Lord Legislador reina con un poder absoluto gracias al terror, a sus poderes e inmortalidad. Le ayudan obligadores e inquisidores , junto a la poderosa magia de la alomancia.",
+    "cover": "https://res.cloudinary.com/dmgwt0zhx/image/upload/v1685995980/PF-BookBuster/p90kzhj2dl8pphe58duz.jpg",
+    "publisher": "Nova",
+    "publisher_date": "2019-01-01",
+    "pages": 672,
+    "language": "es",
+    "author": ["Brandon Sanderson"],
+    "genre": [1,10]
   }
 ]
