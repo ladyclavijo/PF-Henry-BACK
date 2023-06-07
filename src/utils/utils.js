@@ -39,24 +39,27 @@ const inyectDbWithBooks = async () => {
         cover: elem.cover,
         author: elem.author,
         genres: elem.genre,
-        price: elem.pages ? parseInt(elem.pages) * 30.5 : 0,
+        price: elem.pages ? parseInt(elem.pages) * 0.03 : 0,
         publisher: elem.publisher,
         publisher_date: elem.publisher_date,
         pages: elem.pages ? parseInt(elem.pages) : 0,
         language: elem.language,
-        stock: true,
-        created: false,
+        stock: 10,
       };
     });
     api.forEach(async (elem) => {
       const cover = await new Promise((resolve, reject) => {
-        cloudinary.uploader.upload(elem.cover, { folder: "PF-BookBuster" }, (error, result) => {
-          if (error) {
-            reject(error);
-          } else {
-            resolve(result.secure_url);
+        cloudinary.uploader.upload(
+          elem.cover,
+          { folder: "PF-BookBuster" },
+          (error, result) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve(result.secure_url);
+            }
           }
-        });
+        );
       });
       let newBook = await book.create({
         title: elem.title,
@@ -69,8 +72,7 @@ const inyectDbWithBooks = async () => {
         publisher_date: elem.publisher_date,
         pages: elem.pages,
         language: elem.language,
-        stock: true,
-        created: false,
+        stock: 10,
       });
       await newBook.addGenre(elem.genres);
     });
