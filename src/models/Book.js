@@ -12,13 +12,11 @@ module.exports = (sequelize) => {
       title: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: false,
       },
       description: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-
       cover: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -48,12 +46,9 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       stock: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true,
-      },
-      created: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true,
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
       },
     },
     {
