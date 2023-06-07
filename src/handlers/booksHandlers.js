@@ -2,7 +2,8 @@ const {
   getAllBooks,
   getBookById,
   getBooksByTitle,
-  createBook
+  createBook,
+  updateBook,
 } = require("../controllers/booksControllers");
 
 const getAllBooksHandler = async (req, res) => {
@@ -39,7 +40,7 @@ const postBookHandler = async (req, res) => {
     publisher_date,
     pages,
     language,
-    genre,
+    genres,
     author,
   } = req.body;
   try {
@@ -52,8 +53,45 @@ const postBookHandler = async (req, res) => {
       publisher_date,
       pages,
       language,
-      genre,
+      genres,
       author,
+      stock
+    );
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const updateBookHandler = async (req, res) => {
+  const {
+    id,
+    title,
+    description,
+    cover,
+    price,
+    publisher,
+    publisher_date,
+    pages,
+    language,
+    genres,
+    author,
+    stock,
+  } = req.body;
+  try {
+    const response = await updateBook(
+      id,
+      title,
+      description,
+      cover,
+      price,
+      publisher,
+      publisher_date,
+      pages,
+      language,
+      genres,
+      author,
+      stock
     );
     res.status(200).json(response);
   } catch (error) {
@@ -65,4 +103,5 @@ module.exports = {
   postBookHandler,
   getAllBooksHandler,
   getBookByIdHandler,
+  updateBookHandler,
 };
