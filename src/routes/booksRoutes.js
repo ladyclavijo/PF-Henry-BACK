@@ -4,10 +4,12 @@ const {
   getAllBooksHandler,
   getBookByIdHandler,
   postBookHandler,
+  updateBookHandler,
 } = require("../handlers/booksHandlers");
 
 bookRouter.get("/", getAllBooksHandler);
 bookRouter.get("/:id", getBookByIdHandler);
-bookRouter.post("/post", postBookHandler)
+bookRouter.put("/:id", updateBookHandler);
+bookRouter.post("/post", postBookHandler);
 
 module.exports = bookRouter;
