@@ -17,7 +17,7 @@ const users = require("./models/User.js");
 const database = new Sequelize(DB_DEPLOY, {
   logging: false,
   native: false,
-  force: true,
+  alter: true,
 });
 
 books(database);
