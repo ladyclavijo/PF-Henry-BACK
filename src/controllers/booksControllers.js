@@ -64,19 +64,6 @@ const createBook = async (
   author,
   stock
 ) => {
-  console.log(
-    title,
-    description,
-    cover,
-    price,
-    publisher,
-    publisher_date,
-    pages,
-    language,
-    genre,
-    author,
-    stock
-  );
   if (
     !title ||
     !description ||
