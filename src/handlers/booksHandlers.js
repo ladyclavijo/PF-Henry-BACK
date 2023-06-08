@@ -40,8 +40,9 @@ const postBookHandler = async (req, res) => {
     publisher_date,
     pages,
     language,
-    genres,
+    genre,
     author,
+    stock,
   } = req.body;
   try {
     const response = await createBook(
@@ -53,7 +54,7 @@ const postBookHandler = async (req, res) => {
       publisher_date,
       pages,
       language,
-      genres,
+      genre,
       author,
       stock
     );
@@ -74,7 +75,7 @@ const updateBookHandler = async (req, res) => {
     publisher_date,
     pages,
     language,
-    genres,
+    genre,
     author,
     stock,
   } = req.body;
@@ -89,7 +90,7 @@ const updateBookHandler = async (req, res) => {
       publisher_date,
       pages,
       language,
-      genres,
+      genre,
       author,
       stock
     );

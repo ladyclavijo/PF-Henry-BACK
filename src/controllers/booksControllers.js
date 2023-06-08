@@ -64,6 +64,19 @@ const createBook = async (
   author,
   stock
 ) => {
+  console.log(
+    title,
+    description,
+    cover,
+    price,
+    publisher,
+    publisher_date,
+    pages,
+    language,
+    genres,
+    author,
+    stock
+  );
   if (
     !title ||
     !description ||
@@ -77,7 +90,7 @@ const createBook = async (
     !genres ||
     !stock
   ) {
-    throw Error("missing data");
+    throw Error("missing data in createBook");
   } else {
     const newCover = await new Promise((resolve, reject) => {
       cloudinary.uploader.upload(
@@ -119,7 +132,7 @@ const updateBook = async (
   publisher_date,
   pages,
   language,
-  genres,
+  genre,
   author,
   stock
 ) => {
@@ -134,10 +147,10 @@ const updateBook = async (
     !pages ||
     !language ||
     !author ||
-    !genres ||
+    !genre ||
     !stock
   ) {
-    throw Error("missing data");
+    throw Error("missing data in updateBook");
   } else {
     const newCover = await new Promise((resolve, reject) => {
       cloudinary.uploader.upload(
@@ -162,6 +175,7 @@ const updateBook = async (
         publisher_date,
         pages,
         language,
+        genre,
         author,
         stock,
       },
