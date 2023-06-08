@@ -9,7 +9,6 @@ module.exports = (sequelize) => {
         primaryKey: true,
         autoIncrement: true,
       },
-
       username: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -35,7 +34,7 @@ module.exports = (sequelize) => {
       },
       postalcode: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       password: {
         type: DataTypes.STRING,
@@ -48,19 +47,21 @@ module.exports = (sequelize) => {
       },
       paymentMethod: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       shippingAddress: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       isActive: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: false,
       },
       isAdmin: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: false,
       },
     },
     {
