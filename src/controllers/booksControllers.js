@@ -60,7 +60,7 @@ const createBook = async (
   publisher_date,
   pages,
   language,
-  genres,
+  genre,
   author,
   stock
 ) => {
@@ -73,7 +73,7 @@ const createBook = async (
     publisher_date,
     pages,
     language,
-    genres,
+    genre,
     author,
     stock
   );
@@ -87,7 +87,7 @@ const createBook = async (
     !pages ||
     !language ||
     !author ||
-    !genres ||
+    !genre ||
     !stock
   ) {
     throw Error("missing data in createBook");
@@ -117,7 +117,7 @@ const createBook = async (
       author,
       stock,
     });
-    await newBook.addGenre(genres);
+    await newBook.addGenre(genre);
     return `new book created with the id:${newBook?.id}`;
   }
 };
