@@ -79,21 +79,23 @@ const updateBookHandler = async (req, res) => {
     author,
     stock,
   } = req.body;
+
+  const updateData = {
+    title,
+    description,
+    cover,
+    price,
+    publisher,
+    publisher_date,
+    pages,
+    language,
+    genre,
+    author,
+    stock,
+  };
+
   try {
-    const response = await updateBook(
-      id,
-      title,
-      description,
-      cover,
-      price,
-      publisher,
-      publisher_date,
-      pages,
-      language,
-      genre,
-      author,
-      stock
-    );
+    const response = await updateBook(id, updateData);
     res.status(200).json(response);
   } catch (error) {
     res.status(400).json({ error: error.message });
