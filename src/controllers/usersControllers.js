@@ -1,6 +1,7 @@
 const { user } = require("../db");
 
 const createUser = async (
+  id,
   username,
   name,
   lastname,
@@ -10,6 +11,7 @@ const createUser = async (
   phone
 ) => {
   if (
+    !id ||
     !username ||
     !name ||
     !lastname ||
@@ -21,6 +23,7 @@ const createUser = async (
     throw Error("missing data in createUser");
   } else {
     await user.create({
+      id,
       username,
       name,
       lastname,
