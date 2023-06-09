@@ -10,6 +10,6 @@ mainRouter.use(genresRouter);
 mainRouter.use("/books", bookRouter);
 mainRouter.use("/authors", authorRouter);
 mainRouter.use("/payments", paymentRoute);
-mainRouter.use("/register", userRouter);
+mainRouter.use("/users", userRouter);
 
 module.exports = mainRouter;
