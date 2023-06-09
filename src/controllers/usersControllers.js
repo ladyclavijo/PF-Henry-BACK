@@ -9,7 +9,7 @@ const createUser = async (
   country,
   phone
 ) => {
-  if (!id || !username || !name || !lastname || !email || !country || !phone) {
+  if (!id || !username || !email) {
     throw Error("missing data in createUser");
   } else {
     await user.create({
