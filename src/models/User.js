@@ -16,11 +16,13 @@ module.exports = (sequelize) => {
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
+        defaultValue: null,
       },
       lastname: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
+        defaultValue: null,
       },
       email: {
         type: DataTypes.STRING,
@@ -29,28 +31,33 @@ module.exports = (sequelize) => {
       },
       country: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
+        defaultValue: null,
       },
       postalcode: {
         type: DataTypes.INTEGER,
         allowNull: true,
+        defaultValue: null,
       },
       photo: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue: null,
       },
       phone: {
         type: DataTypes.BIGINT(15),
         allowNull: true,
-        unique: true,
+        defaultValue: null,
       },
       paymentMethod: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue: null,
       },
       shippingAddress: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue: null,
       },
       isActive: {
         type: DataTypes.BOOLEAN,
