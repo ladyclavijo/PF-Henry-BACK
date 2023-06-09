@@ -1,8 +1,7 @@
 const { createUser } = require("../controllers/usersControllers");
 
 const postUserHandler = async (req, res) => {
-  const { id, username, name, lastname, email, password, country, phone } =
-    req.body;
+  const { id, username, name, lastname, email, country, phone } = req.body;
   try {
     const response = await createUser(
       id,
@@ -10,7 +9,6 @@ const postUserHandler = async (req, res) => {
       name,
       lastname,
       email,
-      password,
       country,
       phone
     );
