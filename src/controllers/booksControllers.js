@@ -109,70 +109,73 @@ const createBook = async (
   }
 };
 
-const updateBook = async (
-  id,
-  title,
-  description,
-  cover,
-  price,
-  publisher,
-  publisher_date,
-  pages,
-  language,
-  genre,
-  author,
-  stock
-) => {
-  if (
-    !id ||
-    !title ||
-    !description ||
-    !cover ||
-    !price ||
-    !publisher ||
-    !publisher_date ||
-    !pages ||
-    !language ||
-    !author ||
-    !genre ||
-    !stock
-  ) {
+const updateBook = async (id, updateData) => {
+  if (!id || !updateData) {
     throw Error("missing data in updateBook");
   } else {
-    const newCover = await new Promise((resolve, reject) => {
-      cloudinary.uploader.upload(
-        cover,
-        { folder: "PF-BookBuster" },
-        (error, result) => {
-          if (error) {
-            reject(error);
-          } else {
-            resolve(result.secure_url);
+    const bookToUpdate = await book.findByPk(id);
+    if (!bookToUpdate) {
+      throw Error(`Book with id:${id} not found`);
+    }
+
+    const updatedBookData = {};
+
+    if (updateData.title) {
+      updatedBookData.title = updateData.title;
+    }
+    if (updateData.description) {
+      updatedBookData.description = updateData.description;
+    }
+    if (updateData.cover) {
+      updatedBookData.cover = updateData.cover;
+    }
+    if (updateData.price) {
+      updatedBookData.price = updateData.price;
+    }
+    if (updateData.publisher) {
+      updatedBookData.publisher = updateData.publisher;
+    }
+    if (updateData.publisher_date) {
+      updatedBookData.publisher_date = updateData.publisher_date;
+    }
+    if (updateData.pages) {
+      updatedBookData.pages = updateData.pages;
+    }
+    if (updateData.language) {
+      updatedBookData.language = updateData.language;
+    }
+    if (updateData.genre) {
+      updatedBookData.genre = updateData.genre;
+    }
+    if (updateData.author) {
+      updatedBookData.author = updateData.author;
+    }
+    if (updateData.stock) {
+      updatedBookData.stock = updateData.stock;
+    }
+    if (updateData.cover) {
+      updatedBookData.cover = await new Promise((resolve, reject) => {
+        cloudinary.uploader.upload(
+          updateData.cover,
+          { folder: "PF-BookBuster" },
+          (error, result) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve(result.secure_url);
+            }
           }
-        }
-      );
-    });
-    await book.update(
-      {
-        title,
-        description,
-        cover: newCover,
-        price,
-        publisher,
-        publisher_date,
-        pages,
-        language,
-        genre,
-        author,
-        stock,
+        );
+      });
+    }
+
+    await book.update(updatedBookData, {
+      where: {
+        id: id,
       },
-      {
-        where: {
-          id: id,
-        },
-      }
-    );
-    return `book updated with the id:${id}`;
+    });
+
+    return `Book updated with the id:${id}`;
   }
 };
 
