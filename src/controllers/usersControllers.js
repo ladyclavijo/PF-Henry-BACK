@@ -6,20 +6,10 @@ const createUser = async (
   name,
   lastname,
   email,
-  password,
   country,
   phone
 ) => {
-  if (
-    !id ||
-    !username ||
-    !name ||
-    !lastname ||
-    !email ||
-    !password ||
-    !country ||
-    !phone
-  ) {
+  if (!id || !username || !name || !lastname || !email || !country || !phone) {
     throw Error("missing data in createUser");
   } else {
     await user.create({
@@ -28,7 +18,6 @@ const createUser = async (
       name,
       lastname,
       email,
-      password,
       country,
       phone,
     });
