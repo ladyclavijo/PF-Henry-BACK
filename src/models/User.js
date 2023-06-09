@@ -41,7 +41,7 @@ module.exports = (sequelize) => {
       },
       phone: {
         type: DataTypes.BIGINT(15),
-        allowNull: false,
+        allowNull: true,
         unique: true,
       },
       paymentMethod: {
