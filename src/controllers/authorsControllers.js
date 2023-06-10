@@ -1,45 +1,22 @@
 const { author, book } = require("../db");
-const Sequelize = require("sequelize");
-const op = Sequelize.Op;
 
 const getAllAuthors = async () => {
-  const response = await author.findAll({
-    attributes: ["id", "name"],
-  });
-  return response;
-};
-
-const getAuthorsById = async (id) => {
-  try {
-    const findAuthor = await author.findByPk(id);
-    return findAuthor;
-  } catch (error) {
-    return error;
-  }
-};
-
-const getAuthorsByName = async (name) => {
-  try {
-    const dbAuthors = await author.findOne({
-      where: { name: { [op.iLike]: `%${name}%` } },
-      include: [
-        {
-          model: book,
-          attributes: ["name"],
-          through: {
-            attributes: [],
-          },
-        },
-      ],
+  const allBooks = await book.findAll();
+  if (allBooks.length) {
+    const uniqueAuthors = [...new Set(allBooks.map((b) => b.author[0]))];
+    const allAuthors = uniqueAuthors.map((authorName) => {
+      return {
+        name: authorName,
+      };
     });
-    return dbAuthors;
-  } catch (error) {
-    return error;
+    await author.bulkCreate(allAuthors);
+    const response = await author.findAll();
+    return response;
+  } else {
+    const response = await author.findAll();
+    return response;
   }
 };
-
 module.exports = {
   getAllAuthors,
-  getAuthorsById,
-  getAuthorsByName,
 };
