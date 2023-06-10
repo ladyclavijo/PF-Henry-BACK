@@ -1,4 +1,4 @@
-const { user } = require("../db");
+const { user, order } = require("../db");
 
 const createUser = async (
   id,
@@ -27,6 +27,18 @@ const createUser = async (
 
 const getAllUsers = async () => {
   const response = await user.findAll();
+  return response;
+};
+
+
+const getUserById = async (id) => {
+  const response = await user.findByPk(id, {
+    include: { 
+      model: order,
+      as: 'orders',
+      attributes: { exclude: ['userId'] }
+    },
+  });
   return response;
 };
 
@@ -88,4 +100,5 @@ const updateUser = async (id, updateData) => {
   }
 };
 
-module.exports = { createUser, getAllUsers, updateUser };
+module.exports = { createUser, getAllUsers, updateUser, getUserById };
+
