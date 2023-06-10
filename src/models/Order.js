@@ -5,18 +5,13 @@ module.exports = (sequelize) => {
     "order",
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: false,
       },
-
-      amount: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-
-      status: {
-        type: DataTypes.BOOLEAN,
+      items: {
+        type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false,
       },
     },

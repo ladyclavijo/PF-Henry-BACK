@@ -1,4 +1,4 @@
-const { user } = require("../db");
+const { user, order } = require("../db");
 
 const createUser = async (
   id,
@@ -30,4 +30,14 @@ const getAllUsers = async () => {
   return response;
 };
 
-module.exports = { createUser, getAllUsers };
+const getUserById = async (id) => {
+  const response = await user.findByPk(id, {
+    include: { 
+      model: order,
+      as: 'orders',
+      attributes: { exclude: ['userId'] }
+    },
+  });
+  return response;
+};
+module.exports = { createUser, getAllUsers, getUserById };
