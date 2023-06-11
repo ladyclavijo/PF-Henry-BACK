@@ -1,6 +1,6 @@
 require("dotenv").config();
 const { book, genre } = require("../db");
-const { Op } = require("sequelize");
+const { Op, Sequelize } = require("sequelize");
 const cloudinary = require("cloudinary").v2;
 const { CLOUD_NAME, API_KEY, API_SECRET } = process.env;
 
@@ -44,6 +44,21 @@ const getBooksByTitle = async (title) => {
         [Op.iLike]: `%${title}%`,
       },
     },
+  });
+  if (!books.length) {
+    throw Error("There is no book with that name");
+  }
+  return books;
+};
+
+const getBooksByAuthor = async (author) => {
+  const books = await book.findAll({
+    where: Sequelize.where(
+      Sequelize.fn("array_to_string", Sequelize.col("author"), ","),
+      {
+        [Op.iLike]: `%${author}%`,
+      }
+    ),
   });
   if (!books.length) {
     throw Error("There is no book with that name");
@@ -183,6 +198,7 @@ module.exports = {
   getAllBooks,
   getBookById,
   getBooksByTitle,
+  getBooksByAuthor,
   createBook,
   updateBook,
 };
