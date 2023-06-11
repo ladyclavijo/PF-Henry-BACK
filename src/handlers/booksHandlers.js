@@ -2,15 +2,19 @@ const {
   getAllBooks,
   getBookById,
   getBooksByTitle,
+  getBooksByAuthor,
   createBook,
   updateBook,
 } = require("../controllers/booksControllers");
 
 const getAllBooksHandler = async (req, res) => {
-  const { title } = req.query;
+  const { title, author } = req.query;
   try {
     if (title) {
       const response = await getBooksByTitle(title);
+      res.status(200).json(response);
+    } else if (author) {
+      const response = await getBooksByAuthor(author);
       res.status(200).json(response);
     } else {
       const response = await getAllBooks();
