@@ -30,13 +30,12 @@ const getAllUsers = async () => {
   return response;
 };
 
-
 const getUserById = async (id) => {
   const response = await user.findByPk(id, {
-    include: { 
+    include: {
       model: order,
-      as: 'orders',
-      attributes: { exclude: ['userId'] }
+      as: "orders",
+      attributes: { exclude: ["userId"] },
     },
   });
   return response;
@@ -86,6 +85,9 @@ const updateUser = async (id, updateData) => {
     if (updateData.isActive) {
       updatedUserData.isActive = updateData.isActive;
     }
+    if (updateData.isBan) {
+      updatedUserData.isBan = updateData.isBan;
+    }
     if (updateData.isAdmin) {
       updatedUserData.isAdmin = updateData.isAdmin;
     }
@@ -101,4 +103,3 @@ const updateUser = async (id, updateData) => {
 };
 
 module.exports = { createUser, getAllUsers, updateUser, getUserById };
-
