@@ -82,13 +82,13 @@ const updateUser = async (id, updateData) => {
     if (updateData.shippingAddress) {
       updatedUserData.shippingAddress = updateData.shippingAddress;
     }
-    if (updateData.isActive) {
+    if (updateData.isActive !== undefined) {
       updatedUserData.isActive = updateData.isActive;
     }
-    if (updateData.isBan) {
+    if (updateData.isBan !== undefined) {
       updatedUserData.isBan = updateData.isBan;
     }
-    if (updateData.isAdmin) {
+    if (updateData.isAdmin !== undefined) {
       updatedUserData.isAdmin = updateData.isAdmin;
     }
 
