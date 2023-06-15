@@ -8,7 +8,7 @@
     "pages": 352,
     "language": "es",
     "author": ["Lucy Foley"],
-    "genre": [1]
+    "genre": [4]
   },
   {
     "title": "La lista de invitados",
@@ -19,7 +19,7 @@
     "pages": 336,
     "language": "es",
     "author": ["Lucy Foley"],
-    "genre": [1]
+    "genre": [4]
   },
   {
     "title": "El Palacio de Papel",
@@ -41,7 +41,7 @@
     "pages": 432,
     "language": "es",
     "author": ["Margot Lee Shetterly"],
-    "genre": [5]
+    "genre": [2]
   },
   {
     "title": "Sapiens. De animales a dioses",
@@ -52,7 +52,7 @@
     "pages": 496,
     "language": "es",
     "author": ["Yuval Noah Harari"],
-    "genre": [4]
+    "genre": [2]
   },
   {
     "title": "Conozca sus fortalezas 2.0.",
@@ -63,7 +63,7 @@
     "pages": 320,
     "language": "es",
     "author": ["Tom Rath"],
-    "genre": [3]
+    "genre": [2]
   },
   {
     "title": "El imperio del dolor",
@@ -74,7 +74,7 @@
     "pages": 672,
     "language": "es",
     "author": ["Patrick Radden Keefe"],
-    "genre": [8]
+    "genre": [2]
   },
   {
     "title": "Mi historia",
@@ -85,7 +85,7 @@
     "pages": 526,
     "language": "es",
     "author": ["Michelle Obama"],
-    "genre": [7]
+    "genre": [2]
   },
   {
     "title": "El diseño de la investigación social",
@@ -96,7 +96,7 @@
     "pages": 272,
     "language": "es",
     "author": ["Gary King"],
-    "genre": [6]
+    "genre": [2]
   },
   {
     "title": "Self-* and P2P for Network Management",
@@ -110,17 +110,6 @@
     "genre": [2]
   },
   {
-    "title": "La oruga muy hambrienta",
-    "description": "Carle's classic tale of a voracious caterpillar who eats his way through the days of the week and then changes into a beautiful butterfly has been issued in a board book edition with wonderfully thick, durable pages. Full-color illustrations.",
-    "cover": "https://www.aprenderjuntos.cl/wp-content/uploads/2017/04/la-oruga-muy-hambrienta-portada.jpg",
-    "publisher": "Philomel",
-    "publisher_date": "2002-08-25",
-    "pages": 245,
-    "language": "en",
-    "author": ["Eric Carle"],
-    "genre": [1]
-  },
-  {
     "title": "El Principito",
     "description": "El Principito es un clásico de la literatura universal que nos transporta a un mundo mágico y lleno de enseñanzas. Acompaña al pequeño príncipe en su viaje interplanetario y descubre las lecciones de amor, amistad y sabiduría que nos regala en cada página.",
     "cover": "https://d3ugyf2ht6aenh.cloudfront.net/stores/393/260/products/pp-47161-3644a4d257d77930a415962217665910-640-01-206264cdb5f67797db16008895758488-640-0.gif",
@@ -129,7 +118,7 @@
     "pages": 120,
     "language": "es",
     "author": ["Antoine"],
-    "genre": [1, 10]
+    "genre": [1]
   },
   {
     "title": "Larga vida a la reina de Halloween",
@@ -140,7 +129,7 @@
     "pages": 320,
     "language": "es",
     "author": ["Shea Ernshaw"],
-    "genre": [1, 9]
+    "genre": [1]
   },
   {
     "title": "El Pozo de la Ascension",
@@ -151,7 +140,7 @@
     "pages": 784,
     "language": "es",
     "author": ["Brandon Sanderson"],
-    "genre": [1]
+    "genre": [7]
   },
   {
     "title": "El Imperio Final",
@@ -162,6 +151,6 @@
     "pages": 672,
     "language": "es",
     "author": ["Brandon Sanderson"],
-    "genre": [1, 10]
+    "genre": [7]
   }
 ]
