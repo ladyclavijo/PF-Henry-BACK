@@ -6,14 +6,14 @@ const authors = require("./models/Author.js");
 const genres = require("./models/Genre.js");
 const users = require("./models/User.js");
 const orders = require("./models/Order.js");
-
+const carts = require("./models/Cart.js");
 
 // const database = new Sequelize(
 //   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/bookbuster`,
 //   {
 //     logging: false,
 //     native: false,
-//     force: true,
+//     force: false,
 //   }
 // );
 const database = new Sequelize(DB_DEPLOY, {
@@ -27,20 +27,27 @@ authors(database);
 genres(database);
 users(database);
 orders(database);
+carts(database);
 
-const { book, author, genre, user, order } = database.models;
+const { book, author, genre, user, order, cart } = database.models;
 
 user.hasMany(book);
 book.belongsTo(user);
 
-user.hasMany(order, { as: 'orders' });
-order.belongsTo(user, { foreignKey: 'userId' });
+user.hasMany(order, { as: "orders" });
+order.belongsTo(user, { foreignKey: "userId" });
 
 book.belongsToMany(genre, { through: "BookGenre", timestamps: false });
 genre.belongsToMany(book, { through: "BookGenre", timestamps: false });
 
 book.hasOne(user);
 user.belongsTo(book);
+
+user.hasMany(cart);
+cart.belongsTo(user);
+
+book.hasMany(cart);
+cart.belongsTo(book);
 
 module.exports = {
   ...database.models,
