@@ -1,4 +1,5 @@
 const { order } = require("../db");
+const {amountByGenre} = require("../data/data")
 
 const getOrdersByAmountSell = async () => {
   const responseDb = await order.findAll();
@@ -31,7 +32,10 @@ const getOrdersByAmountSell = async () => {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
-  return { bestSellers: cleanData, totalRevenue: Number(formattedTotal) };
+
+  const revenueByCategory = await amountByGenre(cleanData)
+
+  return { totalRevenue: Number(formattedTotal), revenueByCategory ,bestSellers: cleanData};
 };
 
 module.exports = {
