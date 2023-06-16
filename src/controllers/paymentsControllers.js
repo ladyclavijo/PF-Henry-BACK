@@ -32,10 +32,10 @@ const getOrdersByAmountSell = async () => {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
+  const cleanDataWithoutEmptyObj = cleanData.filter((element) => element.hasOwnProperty("id"))
+  const revenueByCategory = await amountByGenre(cleanDataWithoutEmptyObj )
 
-  const revenueByCategory = await amountByGenre(cleanData)
-
-  return { totalRevenue: Number(formattedTotal), revenueByCategory ,bestSellers: cleanData};
+  return { totalRevenue: Number(formattedTotal), revenueByCategory ,bestSellers: cleanDataWithoutEmptyObj };
 };
 
 module.exports = {
