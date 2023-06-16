@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { book, genre, review } = require("../db");
+const { book, genre, review, user } = require("../db");
 const { Op, Sequelize } = require("sequelize");
 const cloudinary = require("cloudinary").v2;
 const { CLOUD_NAME, API_KEY, API_SECRET } = process.env;
@@ -37,6 +37,10 @@ const getBookById = async (id) => {
       {
         model: review,
         attributes: { exclude: ["bookId"] },
+        include: {
+          model: user,
+          attributes: ["username"],
+        },
       }
     ]
   });
