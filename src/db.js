@@ -7,6 +7,7 @@ const genres = require("./models/Genre.js");
 const users = require("./models/User.js");
 const orders = require("./models/Order.js");
 const reviews = require("./models/Review.js")
+const carts = require("./models/Cart.js");
 
 
 // const database = new Sequelize(
@@ -14,7 +15,7 @@ const reviews = require("./models/Review.js")
 //   {
 //     logging: false,
 //     native: false,
-//     force: true,
+//     force: false,
 //   }
 // );
 const database = new Sequelize(DB_DEPLOY, {
@@ -29,14 +30,14 @@ genres(database);
 users(database);
 orders(database);
 reviews(database)
-
-const { book, author, genre, user, order, review } = database.models;
+carts(database);
+const { book, author, genre, user, order, review, cart } = database.models;
 
 user.hasMany(book);
 book.belongsTo(user);
 
-user.hasMany(order, { as: 'orders' });
-order.belongsTo(user, { foreignKey: 'userId' });
+user.hasMany(order, { as: "orders" });
+order.belongsTo(user, { foreignKey: "userId" });
 
 user.hasMany(review)
 review.belongsTo(user)
@@ -49,6 +50,12 @@ genre.belongsToMany(book, { through: "BookGenre", timestamps: false });
 
 book.hasOne(user);
 user.belongsTo(book);
+
+user.hasMany(cart);
+cart.belongsTo(user);
+
+book.hasMany(cart);
+cart.belongsTo(book);
 
 module.exports = {
   ...database.models,
