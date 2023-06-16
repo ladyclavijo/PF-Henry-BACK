@@ -10,7 +10,7 @@ const getOrderAmount = async (items) => {
   }
   const onlyTwoDecimals = amount.toFixed(2);
   const parseAmount = parseInt(onlyTwoDecimals.replace(".", ""), 10);
-  return { parseAmount, cover: itemDb.cover };
+  return parseAmount;
 };
 
 const amountByGenre = async (items) => {

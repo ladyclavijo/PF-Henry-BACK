@@ -10,9 +10,8 @@ const {
 
 paymentRoute.post("/", async (req, res) => {
   const { items, receipt_email, payment_method } = req.body;
-  // console.log(receipt_email)
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: await getOrderAmount(items).parseAmount,
+    amount: await getOrderAmount(items),
     currency: "usd",
     payment_method: payment_method,
     receipt_email: receipt_email,
@@ -34,7 +33,7 @@ paymentRoute.post("/", async (req, res) => {
 
 paymentRoute.post("/order", async (req, res) => {
   const { items, userId } = req.body;
-  const itemsWithTotal = await getOrderAmount(items).parseAmount;
+  const itemsWithTotal = await getOrderAmount(items)
   await items.push({ total: itemsWithTotal });
   try {
     await order.create({ items, userId });
