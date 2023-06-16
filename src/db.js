@@ -21,7 +21,7 @@ const carts = require("./models/Cart.js");
 const database = new Sequelize(DB_DEPLOY, {
   logging: false,
   native: false,
-  force: true,
+  force: false,
 });
 
 books(database);
