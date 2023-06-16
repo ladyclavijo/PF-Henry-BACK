@@ -26,17 +26,19 @@ const getAllBooks = async () => {
 
 const getBookById = async (id) => {
   const findBook = await book.findByPk(id, {
-    include: {
-      model: genre,
-      attributes: ["name"],
-      through: {
-        attributes: [],
+    include: [
+      {
+        model: genre,
+        attributes: ["name"],
+        through: {
+          attributes: [],
+        },
       },
-    },
-    include: {
-      model: review,
-      attributes: { exclude: ["bookId"] },
-    }
+      {
+        model: review,
+        attributes: { exclude: ["bookId"] },
+      }
+    ]
   });
   return findBook;
 };

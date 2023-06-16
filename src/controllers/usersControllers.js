@@ -32,15 +32,17 @@ const getAllUsers = async () => {
 
 const getUserById = async (id) => {
   const response = await user.findByPk(id, {
-    include: {
-      model: order,
-      as: "orders",
-      attributes: { exclude: ["userId"] },
-    },
-    include: {
-      model: review,
-      attributes: { exclude: ["userId"] },
-    }
+    include: [
+      {
+        model: order,
+        as: "orders",
+        attributes: { exclude: ["userId"] },
+      },
+      {
+        model: review,
+        attributes: { exclude: ["userId"] },
+      }
+    ]
   });
   return response;
 };
