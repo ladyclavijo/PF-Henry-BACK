@@ -3,6 +3,7 @@ const {
   getAllUsers,
   updateUser,
   getUserById,
+  postReview,
 } = require("../controllers/usersControllers");
 
 const postUserHandler = async (req, res) => {
@@ -83,9 +84,20 @@ const updateUserHandler = async (req, res) => {
   }
 };
 
+const postReviewHandler = async (req, res) => {
+  const {userId, bookId, rating, reviewContent} = req.body
+  try {
+    await postReview(userId, bookId, rating, reviewContent);
+    res.status(200).send("review created successfully");
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   postUserHandler,
   getAllUsersHandler,
   updateUserHandler,
   getUserByIdHandler,
+  postReviewHandler,
 };

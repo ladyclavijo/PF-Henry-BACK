@@ -1,4 +1,4 @@
-const { user, order } = require("../db");
+const { user, order, review } = require("../db");
 
 const createUser = async (
   id,
@@ -37,6 +37,10 @@ const getUserById = async (id) => {
       as: "orders",
       attributes: { exclude: ["userId"] },
     },
+    include: {
+      model: review,
+      attributes: { exclude: ["userId"] },
+    }
   });
   return response;
 };
@@ -102,4 +106,14 @@ const updateUser = async (id, updateData) => {
   }
 };
 
-module.exports = { createUser, getAllUsers, updateUser, getUserById };
+const postReview = async (userId, bookId, rating, reviewContent) => {
+  await review.create({ rating, reviewContent, userId, bookId })
+};
+
+module.exports = {
+  createUser,
+  getAllUsers,
+  updateUser,
+  getUserById,
+  postReview,
+};
