@@ -4,12 +4,14 @@ const {
   postUserHandler,
   getAllUsersHandler,
   updateUserHandler,
-  getUserByIdHandler
+  getUserByIdHandler,
+  postReviewHandler
 } = require("../handlers/usersHandlers");
 
 userRouter.get("/", getAllUsersHandler);
-userRouter.get("/:id", getUserByIdHandler)
+userRouter.get("/:id", getUserByIdHandler);
 userRouter.post("/register", postUserHandler);
 userRouter.put("/update", updateUserHandler);
+userRouter.post("/review", postReviewHandler);
 
 module.exports = userRouter;
