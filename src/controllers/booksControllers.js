@@ -41,8 +41,8 @@ const getBookById = async (id) => {
           model: user,
           attributes: ["username"],
         },
-      }
-    ]
+      },
+    ],
   });
   return findBook;
 };
@@ -175,7 +175,10 @@ const updateBook = async (id, updateData) => {
     if (updateData.author) {
       updatedBookData.author = updateData.author;
     }
-    if (updateData.stock) {
+    if (updateData.stock !== undefined) {
+      if (updateData.stock <= 0) {
+        throw Error("Stock must be greater than zero");
+      }
       updatedBookData.stock = updateData.stock;
     }
     if (updateData.cover) {
