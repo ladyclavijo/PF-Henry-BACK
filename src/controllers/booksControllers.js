@@ -176,7 +176,7 @@ const updateBook = async (id, updateData) => {
       updatedBookData.author = updateData.author;
     }
     if (updateData.stock !== undefined) {
-      if (updateData.stock <= 0) {
+      if (updateData.stock < 0) {
         throw Error("Stock must be greater than zero");
       }
       updatedBookData.stock = updateData.stock;
