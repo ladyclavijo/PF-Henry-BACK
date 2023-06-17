@@ -4,6 +4,7 @@ const {
   updateUser,
   getUserById,
   postReview,
+  deletReview,
 } = require("../controllers/usersControllers");
 
 const postUserHandler = async (req, res) => {
@@ -94,10 +95,20 @@ const postReviewHandler = async (req, res) => {
   }
 };
 
+const deletReviewHandler = async(req, res) =>{
+  const {id} = req.params
+  try {
+    const response = await deletReview(id)
+    res.status(200).json(response)
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+}
 module.exports = {
   postUserHandler,
   getAllUsersHandler,
   updateUserHandler,
   getUserByIdHandler,
   postReviewHandler,
+  deletReviewHandler
 };

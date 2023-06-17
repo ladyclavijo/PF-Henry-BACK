@@ -112,10 +112,20 @@ const postReview = async (userId, bookId, rating, reviewContent) => {
   await review.create({ rating, reviewContent, userId, bookId })
 };
 
+const deletReview = async (id) =>{
+  const deleted = await review.destroy({
+    where:{
+      id: id
+    }
+  })
+  if(deleted === 0) throw Error('Review not found')
+  else return 'Review deleted successfully'
+}
 module.exports = {
   createUser,
   getAllUsers,
   updateUser,
   getUserById,
   postReview,
+  deletReview
 };
