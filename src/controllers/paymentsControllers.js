@@ -1,5 +1,6 @@
 const { order } = require("../db");
-const {amountByGenre} = require("../data/data")
+const {amountByGenre} = require("../data/data");
+const { response } = require("express");
 
 const getOrdersByAmountSell = async () => {
   const responseDb = await order.findAll();
@@ -40,8 +41,18 @@ const getOrdersByAmountSell = async () => {
 
 
 const getAllOrders = async () =>{
-  const response = await order.findAll({})
-  return response
+  const rawOrder = await order.findAll({})
+  rawOrder.forEach(obj => {
+    let totalCount = 0;
+    obj.items.forEach(item => {
+      if (item.hasOwnProperty("qty")) {
+        totalCount += item.qty;
+      }
+    });
+    obj.items[obj.items.length - 1].totalItems = totalCount
+    obj.items[obj.items.length - 1].total = Number(obj.items[obj.items.length - 1].total) / 100;
+  });
+  return rawOrder
 }
 module.exports = {
   getOrdersByAmountSell,
