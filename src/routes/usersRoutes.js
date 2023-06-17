@@ -5,7 +5,8 @@ const {
   getAllUsersHandler,
   updateUserHandler,
   getUserByIdHandler,
-  postReviewHandler
+  postReviewHandler,
+  deletReviewHandler
 } = require("../handlers/usersHandlers");
 
 userRouter.get("/", getAllUsersHandler);
@@ -13,5 +14,6 @@ userRouter.get("/:id", getUserByIdHandler);
 userRouter.post("/register", postUserHandler);
 userRouter.put("/update", updateUserHandler);
 userRouter.post("/review", postReviewHandler);
+userRouter.delete("/review/delete/:id", deletReviewHandler)
 
 module.exports = userRouter;
