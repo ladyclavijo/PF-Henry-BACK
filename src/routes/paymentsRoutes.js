@@ -6,6 +6,7 @@ const { getOrderAmount } = require("../data/data");
 const { order } = require("../db");
 const {
   getOrderHandler,
+  getAllOrdersHandler,
 } = require ('../handlers/paymentHandler')
 
 paymentRoute.post("/", async (req, res) => {
@@ -43,6 +44,7 @@ paymentRoute.post("/order", async (req, res) => {
   }
 });
 
+paymentRoute.get("/orders", getAllOrdersHandler)
 paymentRoute.get("/sales", getOrderHandler)
 
 module.exports = paymentRoute;

@@ -38,6 +38,12 @@ const getOrdersByAmountSell = async () => {
   return { totalRevenue: Number(formattedTotal), revenueByCategory ,bestSellers: cleanDataWithoutEmptyObj };
 };
 
+
+const getAllOrders = async () =>{
+  const response = await order.findAll({})
+  return response
+}
 module.exports = {
   getOrdersByAmountSell,
+  getAllOrders
 };
