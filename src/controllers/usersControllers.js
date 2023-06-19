@@ -1,4 +1,5 @@
 const { user, order, review } = require("../db");
+const { getClearShoppingOrder } = require("../data/data");
 
 const createUser = async (
   id,
@@ -31,7 +32,7 @@ const getAllUsers = async () => {
 };
 
 const getUserById = async (id) => {
-  const response = await user.findByPk(id, {
+  let response = await user.findByPk(id, {
     include: [
       {
         model: order,
@@ -41,10 +42,22 @@ const getUserById = async (id) => {
       {
         model: review,
         attributes: { exclude: ["userId"] },
-      }
-    ]
+      },
+    ],
   });
-  return response;
+  const auxOrders = response.orders.map((order) => {
+    return {
+      id: order.id,
+      items: order.items.filter((elem) => elem.hasOwnProperty("id")),
+      total:
+        order.items.find((elem) => elem.hasOwnProperty("total")).total / 100,
+      createdAt: order.createdAt,
+    };
+  });
+  for (const element of auxOrders) {
+    element.items = await getClearShoppingOrder(element.items);
+  }
+  return {response , detailShopHistory: auxOrders}
 };
 
 const updateUser = async (id, updateData) => {
@@ -109,23 +122,23 @@ const updateUser = async (id, updateData) => {
 };
 
 const postReview = async (userId, bookId, rating, reviewContent) => {
-  await review.create({ rating, reviewContent, userId, bookId })
+  await review.create({ rating, reviewContent, userId, bookId });
 };
 
-const deletReview = async (id) =>{
+const deletReview = async (id) => {
   const deleted = await review.destroy({
-    where:{
-      id: id
-    }
-  })
-  if(deleted === 0) throw Error('Review not found')
-  else return 'Review deleted successfully'
-}
+    where: {
+      id: id,
+    },
+  });
+  if (deleted === 0) throw Error("Review not found");
+  else return "Review deleted successfully";
+};
 module.exports = {
   createUser,
   getAllUsers,
   updateUser,
   getUserById,
   postReview,
-  deletReview
+  deletReview,
 };
