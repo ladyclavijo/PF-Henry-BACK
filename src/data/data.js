@@ -13,6 +13,20 @@ const getOrderAmount = async (items) => {
   return parseAmount;
 };
 
+const getClearShoppingOrder = async (order) => {
+  let aux = [];
+  for (const element of order) {
+    const itemDb = await getBookById(element.id);
+    const clearItemDb = {
+      id: itemDb.id,
+      semiTotal: itemDb.price * element.qty,
+      cover: itemDb.cover
+    };
+    aux.push(clearItemDb);
+  }
+  return aux;
+};
+
 const amountByGenre = async (items) => {
   let aux = [];
   for (const element of items) {
@@ -98,4 +112,5 @@ const amountByGenre = async (items) => {
 module.exports = {
   getOrderAmount,
   amountByGenre,
+  getClearShoppingOrder
 };
