@@ -13,6 +13,20 @@ const getOrderAmount = async (items) => {
   return parseAmount;
 };
 
+const bestSellersWithCoverAndTitle = async(items) =>{
+  const aux = []
+  for(const element of items){
+    const itemDb = await getBookById(element.id)
+    aux.push({
+      id: itemDb.id,
+      title: itemDb.title,
+      qty: element.qty,
+      revenue: Number((element.qty * itemDb.price).toFixed(2))
+    })
+  }
+  return aux
+}
+
 const getClearShoppingOrder = async (order) => {
   let aux = [];
   for (const element of order) {
@@ -112,5 +126,6 @@ const amountByGenre = async (items) => {
 module.exports = {
   getOrderAmount,
   amountByGenre,
-  getClearShoppingOrder
+  getClearShoppingOrder,
+  bestSellersWithCoverAndTitle
 };
