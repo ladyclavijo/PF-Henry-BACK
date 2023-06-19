@@ -1,5 +1,5 @@
 const { order } = require("../db");
-const {amountByGenre} = require("../data/data");
+const {amountByGenre, bestSellersWithCoverAndTitle} = require("../data/data");
 const { response } = require("express");
 
 const getOrdersByAmountSell = async () => {
@@ -29,14 +29,12 @@ const getOrdersByAmountSell = async () => {
     .reduce((acc, current) => {
       return acc + current.total;
     }, 0);
-  const formattedTotal = (totalRevenue / 100).toLocaleString("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-  const cleanDataWithoutEmptyObj = cleanData.filter((element) => element.hasOwnProperty("id"))
-  const revenueByCategory = await amountByGenre(cleanDataWithoutEmptyObj )
-
-  return { totalRevenue: Number(formattedTotal), revenueByCategory ,bestSellers: cleanDataWithoutEmptyObj };
+  const formattedTotal = (totalRevenue / 100)
+  const cleanDataWithoutEmptyObj = cleanData.filter((element) => element.hasOwnProperty("id")).slice(0,10)
+  const cleanDataWithTitleAndCover = await bestSellersWithCoverAndTitle(cleanDataWithoutEmptyObj)
+  const revenueByCategory = await amountByGenre(cleanDataWithoutEmptyObj)
+  
+  return { totalRevenue: Number(formattedTotal), revenueByCategory ,bestSellers: cleanDataWithTitleAndCover };
 };
 
 
