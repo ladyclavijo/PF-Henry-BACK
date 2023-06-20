@@ -25,13 +25,15 @@ const postUserHandler = async (req, res) => {
   }
 };
 const getAllUsersHandler = async (req, res) => {
+  const { username } = req.query;
   try {
-    const response = await getAllUsers();
+    const response = await getAllUsers(username);
     res.status(200).json(response);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
+
 
 const getUserByIdHandler = async (req, res) => {
   const { id } = req.params;

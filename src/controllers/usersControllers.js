@@ -26,9 +26,17 @@ const createUser = async (
   }
 };
 
-const getAllUsers = async () => {
-  const response = await user.findAll();
-  return response;
+const getAllUsers = async (username) => {
+  if (username) {
+    const userByUsername = await user.findAll()
+    const userName = userByUsername.filter((u) => {
+        return u.username.toLowerCase().includes(username.toLowerCase()); 
+    });            
+    return userName;
+  } else {
+    const response = await user.findAll();
+    return response;
+  }
 };
 
 const getUserById = async (id) => {
