@@ -33,6 +33,7 @@ const getClearShoppingOrder = async (order) => {
     const itemDb = await getBookById(element.id);
     const clearItemDb = {
       id: itemDb.id,
+      title: itemDb.title,
       semiTotal: itemDb.price * element.qty,
       cover: itemDb.cover
     };
