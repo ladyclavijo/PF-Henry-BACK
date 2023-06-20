@@ -87,7 +87,8 @@ const createBook = async (
   language,
   genre,
   author,
-  stock
+  stock,
+  userId
 ) => {
   if (
     !title ||
@@ -100,7 +101,8 @@ const createBook = async (
     !language ||
     !author ||
     !genre ||
-    !stock
+    !stock ||
+    !userId
   ) {
     throw Error("missing data in createBook");
   } else {
@@ -128,6 +130,7 @@ const createBook = async (
       language,
       author,
       stock,
+      userId,
     });
     await newBook.addGenre(genre);
     return `new book created with the id:${newBook?.id}`;
