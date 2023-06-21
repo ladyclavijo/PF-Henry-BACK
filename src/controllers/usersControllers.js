@@ -1,5 +1,5 @@
 const { user, order, review, book } = require("../db");
-const { getClearShoppingOrder } = require("../data/data");
+const { getClearShoppingOrder, getSallesAmount } = require("../data/data");
 
 const createUser = async (
   id,
@@ -70,10 +70,10 @@ const getUserById = async (id) => {
   for (const element of auxOrders) {
     element.items = await getClearShoppingOrder(element.items);
   }
+  const sales = await getSallesAmount(response.Publish_books)
 
 
-
-  return {response , detailShopHistory: auxOrders}
+  return {response , detailShopHistory: auxOrders, mySales: sales }
 };
 
 
