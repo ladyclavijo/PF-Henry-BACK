@@ -32,7 +32,7 @@ reviews(database);
 carts(database);
 const { book, author, genre, user, order, review, cart } = database.models;
 
-user.hasMany(book);
+user.hasMany(book, {as:"Publish_books" });
 book.belongsTo(user);
 
 user.hasMany(order, { as: "orders" });
@@ -47,8 +47,8 @@ review.belongsTo(book);
 book.belongsToMany(genre, { through: "BookGenre", timestamps: false });
 genre.belongsToMany(book, { through: "BookGenre", timestamps: false });
 
-book.hasOne(user);
-user.belongsTo(book);
+// book.hasOne(user);
+// user.belongsTo(book);
 
 user.hasMany(cart);
 cart.belongsTo(user);

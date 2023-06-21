@@ -1,4 +1,4 @@
-const { user, order, review } = require("../db");
+const { user, order, review, book } = require("../db");
 const { getClearShoppingOrder } = require("../data/data");
 
 const createUser = async (
@@ -43,12 +43,17 @@ const getUserById = async (id) => {
   let response = await user.findByPk(id, {
     include: [
       {
-        model: order,
-        as: "orders",
-        attributes: { exclude: ["userId"] },
+        model: book,
+        as: "Publish_books",
+        attributes: ["id","title","price","cover","stock"]
       },
       {
         model: review,
+        attributes: { exclude: ["userId"] },
+      },
+      {
+        model: order,
+        as: "orders",
         attributes: { exclude: ["userId"] },
       },
     ],
@@ -65,8 +70,12 @@ const getUserById = async (id) => {
   for (const element of auxOrders) {
     element.items = await getClearShoppingOrder(element.items);
   }
+
+
+
   return {response , detailShopHistory: auxOrders}
 };
+
 
 const updateUser = async (id, updateData) => {
   if (!id || !updateData) {
