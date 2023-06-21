@@ -1,4 +1,5 @@
 const { getBookById } = require("../controllers/booksControllers");
+const {order} = require("../db")
 
 const getOrderAmount = async (items) => {
   let amount = 0;
@@ -12,6 +13,41 @@ const getOrderAmount = async (items) => {
   const parseAmount = parseInt(onlyTwoDecimals.replace(".", ""), 10);
   return parseAmount;
 };
+
+const getSallesAmount = async(myBooks)=>{
+  let rawOrders = []
+  let books = myBooks
+  let orders = await order.findAll()
+  for(const book of books){
+    let dbBook = await getBookById(book.id)
+    let aux = orders.filter(element => element.items.some(elem => elem.id === book.id))
+    let auxWithoutWrongIds = aux.map(elem => {
+      return{
+        id: elem.id,
+        title: dbBook.title,
+        cover: dbBook.cover,
+        buyerId: elem.userId,
+        purchasedAt: elem.createdAt,
+        items: elem.items.find(elem => elem.id === book.id),
+        total: Number((elem.items.find(item => item.id === book.id).qty * dbBook.price).toFixed(2))
+      }
+    })
+    rawOrders.push(auxWithoutWrongIds)
+  }
+  const cleanOrders = rawOrders.map(orders =>{
+    return{
+      title: orders[0].title,
+      cover: orders[0].cover,
+      total: orders.reduce((acc, current) =>{
+        return Number((acc + current.total).toFixed(2))
+      }, 0)
+    }
+  })
+  const totalRevenue = cleanOrders.reduce((acc,current)=>{
+    return Number((acc + current.total).toFixed(2))
+  },0)
+  return {totalRevenue, revenueByBook : cleanOrders, allOrders : rawOrders}
+}
 
 const bestSellersWithCoverAndTitle = async(items) =>{
   const aux = []
@@ -129,5 +165,6 @@ module.exports = {
   getOrderAmount,
   amountByGenre,
   getClearShoppingOrder,
-  bestSellersWithCoverAndTitle
+  bestSellersWithCoverAndTitle,
+  getSallesAmount
 };
