@@ -36,8 +36,8 @@ const getSallesAmount = async(myBooks)=>{
   }
   const cleanOrders = rawOrders.map(orders =>{
     return{
-      title: orders[0].title,
-      cover: orders[0].cover,
+      title: orders[0]?.title,
+      cover: orders[0]?.cover,
       total: orders.reduce((acc, current) =>{
         return Number((acc + current.total).toFixed(2))
       }, 0)
